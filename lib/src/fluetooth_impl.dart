@@ -37,10 +37,10 @@ class FluetoothImpl implements Fluetooth {
   Future<FluetoothDevice?> get connectedDevice async {
     final Map<Object?, Object?>? responseMap =
         await _channel.invokeMapMethod<Object?, Object?>('connectedDevice');
-
     if (responseMap != null) {
       return FluetoothDevice.fromMap(Map<String, String>.from(responseMap));
     }
+    return null;
   }
 
   @override

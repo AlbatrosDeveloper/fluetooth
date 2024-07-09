@@ -48,7 +48,8 @@ class _MyAppState extends State<MyApp> {
       return;
     }
     setState(() => _isBusy = true);
-    final List<FluetoothDevice> devices = await Fluetooth().getAvailableDevices();
+    final List<FluetoothDevice> devices =
+        await Fluetooth().getAvailableDevices();
     setState(() {
       _devices = devices;
       _isBusy = false;
@@ -151,7 +152,7 @@ class _MyAppState extends State<MyApp> {
           TextButton(
             onPressed: _connectedDevice != null && !_isBusy ? _print : null,
             style: TextButton.styleFrom(
-              primary: Colors.amber,
+              foregroundColor: Colors.amber,
             ),
             child: const Text('Print'),
           ),
@@ -171,12 +172,11 @@ class _MyAppState extends State<MyApp> {
                   title: Text(currentDevice.name),
                   subtitle: Text(currentDevice.id),
                   trailing: ElevatedButton(
-                    onPressed:
-                        _connectedDevice == currentDevice
-                            ? _disconnect
-                            : _connectedDevice == null && !_isBusy
-                                ? () => _connect(currentDevice)
-                                : null,
+                    onPressed: _connectedDevice == currentDevice
+                        ? _disconnect
+                        : _connectedDevice == null && !_isBusy
+                            ? () => _connect(currentDevice)
+                            : null,
                     child: Text(
                       _connectedDevice == currentDevice
                           ? 'Disconnect'
